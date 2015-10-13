@@ -57,7 +57,7 @@ class MysqlSchemaParser extends BaseSchemaParser
         'tinytext' => PropelTypes::VARCHAR,
         'mediumtext' => PropelTypes::LONGVARCHAR,
         'text' => PropelTypes::LONGVARCHAR,
-        'enum' => PropelTypes::CHAR,
+        'enum' => PropelTypes::CHAR, // FIXME: this should be ENUM
         'set' => PropelTypes::CHAR,
     );
 
