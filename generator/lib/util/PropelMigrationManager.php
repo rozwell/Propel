@@ -129,6 +129,10 @@ class PropelMigrationManager
         $oldestMigrationTimestamp = null;
         $migrationTimestamps = array();
         foreach ($connections as $name => $params) {
+            if (array_key_exists('migrations', $params) && !$params['migrations']) {
+              continue;
+            }
+
             $pdo = $this->getPdoConnection($name);
             $sql = sprintf('SELECT version FROM %s', $this->getMigrationTable());
 
@@ -167,6 +171,11 @@ class PropelMigrationManager
 
     public function createMigrationTable($datasource)
     {
+        $connection = $this->getConnection($datasource);
+        if (array_key_exists('migrations', $connection) && !$connection['migrations']) {
+          return;
+        }
+
         $platform = $this->getPlatform($datasource);
         // modelize the table
         $database = new Database($datasource);
@@ -188,6 +197,11 @@ class PropelMigrationManager
 
     public function updateLatestMigrationTimestamp($datasource, $timestamp)
     {
+        $connection = $this->getConnection($datasource);
+        if (array_key_exists('migrations', $connection) && !$connection['migrations']) {
+          return;
+        }
+
         $platform = $this->getPlatform($datasource);
         $pdo = $this->getPdoConnection($datasource);
         $sql = sprintf('DELETE FROM %s', $this->getMigrationTable());

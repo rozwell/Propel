@@ -56,7 +56,11 @@ class PropelColumnComparator
         $fromDomain = $fromColumn->getDomain();
         $toDomain = $toColumn->getDomain();
         if ($fromDomain->getType() != $toDomain->getType()) {
-            $changedProperties['type'] = array($fromDomain->getType(), $toDomain->getType());
+            if ($toColumn->getType() == PropelTypes::ENUM && $toColumn->getPhpType() == 'string') {
+                // use MySQL native ENUM support
+            } else {
+                $changedProperties['type'] = array($fromDomain->getType(), $toDomain->getType());
+            }
         }
         if ($fromDomain->getScale() != $toDomain->getScale()) {
             $changedProperties['scale'] = array($fromDomain->getScale(), $toDomain->getScale());
