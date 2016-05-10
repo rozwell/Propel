@@ -200,6 +200,9 @@ class MysqlSchemaParser extends BaseSchemaParser
                     $size = (int) $matches[2];
                 }
             }
+            if (in_array($nativeType, ['mediumtext', 'longtext'])) {
+                $sqlType = $nativeType;
+            }
             if ($matches[3]) {
                 $sqlType = $row['Type'];
             }
