@@ -1906,7 +1906,7 @@ abstract class " . $this->getClassname() . " extends " . $parentClass . " ";
         if (\$v !== null) {
             \$valueSet = " . $this->getPeerClassname() . "::getValueSet(" . $this->getColumnConstant($col) . ");
             if (!in_array(\$v, \$valueSet)) {
-                throw new PropelException(sprintf('Value \"%s\" is not accepted in this enumerated column', \$v));
+                throw new PropelException(sprintf('Value \"%s\" is not accepted in this enumerated column. Possible values: \"%s\"', \$v, implode('\",\"', \$valueSet)));
             }
             \$v = array_search(\$v, \$valueSet);
         }

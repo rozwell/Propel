@@ -551,7 +551,7 @@ abstract class " . $this->getClassname() . $extendingPeerClass . "
     {
         \$values = " . $this->getPeerClassname() . "::getValueSet(\$colname);
         if (!in_array(\$enumVal, \$values)) {
-            throw new PropelException(sprintf('Value \"%s\" is not accepted in this enumerated column', \$colname));
+            throw new PropelException(sprintf('Value \"%s\" is not accepted in this enumerated column. Possible values: \"%s\"', \$enumVal, implode('\",\"', \$values)));
         }
 
         return array_search(\$enumVal, \$values);
