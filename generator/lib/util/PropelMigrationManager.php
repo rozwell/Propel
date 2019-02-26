@@ -317,21 +317,21 @@ class $migrationClassName
 {
     public function preUp(\$manager){}
 
-    public function postUp(\$manager){}
-
-    public function preDown(\$manager){}
-
-    public function postDown(\$manager){}
-
     public function getUpSQL()
     {
         return $migrationUpString;
     }
 
+    public function postUp(\$manager){}
+
+    public function preDown(\$manager){}
+
     public function getDownSQL()
     {
         return $migrationDownString;
     }
+
+    public function postDown(\$manager){}
 }
 EOP;
 
