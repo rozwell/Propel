@@ -104,7 +104,7 @@ class ColumnDefaultValue
             return true;
         }
         // special case for current timestamp
-        $equivalents = array('CURRENT_TIMESTAMP', 'NOW()');
+        $equivalents = array('CURRENT_TIMESTAMP', 'current_timestamp()', 'NOW()');
         if (in_array(strtoupper($this->getValue()), $equivalents) && in_array(strtoupper($other->getValue()), $equivalents)) {
             return true;
         }
